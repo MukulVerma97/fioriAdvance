@@ -1,0 +1,11 @@
+<mvc:View controllerName="fiori2904.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page2" title="{i18n>title2}">
+
+    <Button id="btnsub2" text="Hello I am at View 2" press="onstbn">
+    
+    </Button>
+
+    </Page>
+</mvc:View>
