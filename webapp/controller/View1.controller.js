@@ -8,12 +8,25 @@ sap.ui.define([
         onInit() {
         },
 
-        onsbt : function(){
+        onsbt: function(){
 
-          MessageBox.show("Hello Dear",{
-            icon: MessageBox.Icon.INFORMATION,
-			title: "My message box title",
-          })
+            this.getOwnerComponent().getRouter().navTo("RouteView2")
+        },
+
+        onSubmit: function(oEvent){
+           var ipName =this.getView().byId("idName").getValue();
+           console.log(ipName);
+        var msg = "Welcome To " + ipName;
+
+        this.getView().byId("id_text").setText(msg).setTextAlign("Left");
+
+ this.getView().byId("btn1").setType("Accept").setText("Great")
+
+ this.getView().byId("nameLabel").setRequired(false)
+ this.getView().byId("idName").setEnabled(false)
+ 
+           
         }
+
     });
 });

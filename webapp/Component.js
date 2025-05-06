@@ -21,6 +21,25 @@ sap.ui.define([
 
             // enable routing
             this.getRouter().initialize();
+
+            var oModel = this.getModel();
+            var empModel =this.getModel("empModel")
+
+            oModel.read("/Employees",{
+             success: function(data){
+                      for (var i = 0; i < data.results.length; i++) {
+                        data.results[i].Sno=i+1 ;
+                       //data.results[i].FirstName= "Mr."+ " "+ data.results[i].FirstName
+                        
+                      }
+                empModel.setData(data);
+
+             },
+             error:function(){
+
+             }
+
+            })
         }
     });
 });

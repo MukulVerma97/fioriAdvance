@@ -44,7 +44,7 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.135.0",
       "libs": {
@@ -66,8 +66,21 @@
       "": {
         "dataSource": "mainService",
         "preload": true,
-        "settings": {}
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode" : "Inline",
+          "refreshAfterChange":false,
+          "metadataURLParams":{
+            "sap-value-list":"none"
+          }
+        }
+      },
+
+      "empModel":{
+              "type": "sap.ui.model.json.JSONModel"
+
       }
+
     },
     "resources": {
       "css": [
@@ -98,9 +111,16 @@
         },
         {
           "name": "RouteView2",
-          "pattern": "secondview",
+          "pattern": "gridView",
           "target": [
             "TargetView2"
+          ]
+        },
+        {
+          "name": "RouteView3",
+          "pattern": "simpleForm",
+          "target": [
+            "TargetView3"
           ]
         }
       ],
@@ -117,6 +137,13 @@
           "viewId": "View2",
           "viewType": "XML",
           "name": "View2",   
+          "clearControlAggregation": false 
+          
+        },
+        "TargetView3": {
+          "viewId": "View3",
+          "viewType": "XML",
+          "name": "View3",   
           "clearControlAggregation": false 
           
         }

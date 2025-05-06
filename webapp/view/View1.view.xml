@@ -3,9 +3,64 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
 
-    <Button id="btnsub" text="Hello I am here" press="onsbt">
-    
-    </Button>
+        <content>
+            <Text id="id_text" text="Welcome to UI5" textAlign="Center" width="100%" class="sapMH1FontSize"></Text>
+
+
+
+            <Label text="Emmployee" required="true" id="nameLabel"></Label>
+            <Input maxLength="12" width="30%" value="Mukul" id="idName"></Input>
+            <Button text="goto View 2" press="onSubmit" type="Emphasized" class="sapUiTinyMarginBegin" id="btn1">
+
+            </Button>
+
+            <Table items="{/Employees}">
+                <headerToolbar>
+
+                    <Toolbar >
+                        <Title text="Employee List"></Title>
+
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column >
+
+                        <Text text=" Employee ID"></Text>
+                    </Column>
+                    <Column >
+
+                        <Text text="Name"></Text>
+                    </Column>
+
+
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <Text text="{EmployeeID}"></Text>
+                            <!-- <Text text="{ = ${oModel>FirstName} + '' + ${oModel>LastName}}"></Text> -->
+                            <Text text="{= ${FirstName} + ' ' + ${LastName} }" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+
+            </Table> 
+
+        </content>
+        <footer>
+
+            <Bar>
+                <contentRight>
+                    <Button id="btnsub" text="goto View 2" press="onsbt">
+
+                    </Button>
+                </contentRight>   
+            </Bar>
+
+
+        </footer>
+
+
 
     </Page>
 </mvc:View>

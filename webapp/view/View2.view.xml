@@ -1,11 +1,191 @@
 <mvc:View controllerName="fiori2904.controller.View2"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns="sap.m" displayBlock="true"
+    xmlns:l="sap.ui.layout">
     <Page id="page2" title="{i18n>title2}">
-
+        <!-- 
     <Button id="btnsub2" text="Hello I am at View 2" press="onstbn">
     
-    </Button>
+    </Button> -->
 
+        <content>
+            <Panel headerText="Employee Details" expandable="false" expandAnimation="true">
+                <l:Grid defaultSpan="L6 M6" vSpacing="0">
+                    <l:content>
+                        <Label text="Employee ID" />
+                        <Input />
+                        <Label text="Employee Name" />
+                        <Input />
+                        <Label text="Employee Designation" />
+                        <Input />
+                        <Label text="Employee Skill" />
+                        <Input />
+                        <Label text="Employee Email Id" />
+                        <Input />
+                        <Label text="EmployeePhone No" />
+                        <Input />
+                    </l:content>
+                </l:Grid>
+            </Panel>
+
+            <Panel headerText="Family Details" expandable="true">
+                <l:Grid defaultSpan="L3 M3" vSpacing="0">
+                    <l:content>
+                        <Label text="Employee ID" />
+                        <Input />
+                        <Label text="Employee Name" />
+                        <Input />
+                        <Label text="Employee Designation" />
+                        <Input />
+                        <Label text="Employee Skill" />
+                        <Input />
+                        <Label text="Employee Email Id" />
+                        <Input />
+                        <Label text="EmployeePhone No" />
+                        <Input />
+                    </l:content>
+                </l:Grid>
+            </Panel>
+
+            <Panel headerText="Deatils" expandable="true">
+                <l:Grid vSpacing="0">
+                    <l:content>
+                        <Label text="Employee Name">
+                            <layoutData>
+                                <l:GridData span="L3 M3" />
+                            </layoutData>
+                        </Label>
+                        <Input>
+                            <layoutData>
+                                <l:GridData span="L9 M9" />
+                            </layoutData>
+                        </Input>
+
+                        <Label text="Employee Designation">
+                            <layoutData>
+                                <l:GridData span="L3 M3" />
+                            </layoutData>
+                        </Label>
+                        <Input>
+                            <layoutData>
+                                <l:GridData span="L3 M3" />
+                            </layoutData>
+                        </Input>
+                        <Label text="Employee Skill">
+                            <layoutData>
+                                <l:GridData span="L3 M3" />
+                            </layoutData>
+                        </Label>
+                        <Input>
+                            <layoutData>
+                                <l:GridData span="L3 M3" />
+                            </layoutData>
+                        </Input>
+
+                        <Label text="Employee address">
+                            <layoutData>
+                                <l:GridData span="L3 M3"></l:GridData>
+                            </layoutData>
+                        </Label>
+                        <Input >
+                            <layoutData>
+                                <l:GridData span="L9 M9"></l:GridData>
+                            </layoutData>
+                        </Input>
+                    </l:content>
+                </l:Grid>
+            </Panel>
+        </content>
+        <ScrollContainer vertical="true" horizontal="true">
+            <Table items="{empModel>/results}">
+                <headerToolbar>
+
+                    <Toolbar >
+                        <Title text="Employee List"></Title>
+
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+
+                    <Column width="5rem">
+
+                        <Text text="S.No"></Text>
+                    </Column>
+                    <Column width="5rem">
+
+                        <Text text=" Employee ID"></Text>
+                    </Column>
+                    <Column width="10rem">
+
+                        <Text text="Name"></Text>
+                    </Column>
+                    <Column width="20rem">
+
+                        <Text text="BirthDate"></Text>
+                    </Column>
+                    <Column width="15rem">
+
+                        <Text text="Address"></Text>
+                    </Column>
+                    <Column width="10
+                      
+                      rem">
+
+                        <Text text="Region"></Text>
+                    </Column>
+                    <Column width="10rem">
+
+                        <Text text="Country"></Text>
+                    </Column>
+                    <Column width="10rem">
+
+                        <Text text="Photo"></Text>
+                    </Column>
+
+
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <Text text="{empModel>Sno}"></Text>
+                            <Text text="{empModel>EmployeeID}"></Text>
+                            <!-- <Text text="{ = ${oModel>FirstName} + '' + ${oModel>LastName}}"></Text> -->
+                            <Text text="{= ${empModel>FirstName} + ' ' + ${empModel>LastName} }" />
+                            <Text text="{empModel>BirthDate}"></Text>
+                            <Text text="{empModel>Address}"></Text>
+                            <Text text="{empModel>Region}"></Text>
+                            <Text text="{empModel>Country}"></Text>
+                            <Image src="{= 'https://randomuser.me/api/portraits/men/' + ${empModel>EmployeeID} + '.jpg' }" width="50px" height="50px" />
+
+
+                        </cells>
+                    </ColumnListItem>
+                </items>
+
+            </Table>
+
+        </ScrollContainer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <footer>
+            <Bar >
+                <contentRight>
+                    <Button text="Simple Form" type="Emphasized" press="onSimple"></Button>
+
+                </contentRight>
+
+            </Bar>
+        </footer>
     </Page>
 </mvc:View>
