@@ -14,6 +14,7 @@
 
             </Button>
 
+  <ScrollContainer vertical="true" horizontal="true">
             <Table items="{/Employees}">
                 <headerToolbar>
 
@@ -23,13 +24,34 @@
                     </Toolbar>
                 </headerToolbar>
                 <columns>
-                    <Column >
+
+                    <Column width="5rem">
 
                         <Text text=" Employee ID"></Text>
                     </Column>
-                    <Column >
-
+                    <Column width="10rem">
+ 
                         <Text text="Name"></Text>
+                    </Column>
+                    <Column width="8rem">
+
+                        <Text text="BirthDate"></Text>
+                    </Column>
+                    <Column width="15rem">
+
+                        <Text text="Address"></Text>
+                    </Column>
+                    <Column width="10rem">
+
+                        <Text text="Region"></Text>
+                    </Column>
+                    <Column width="10rem">
+
+                        <Text text="Country"></Text>
+                    </Column>
+                    <Column width="10rem">
+
+                        <Text text="Photo"></Text>
                     </Column>
 
 
@@ -39,13 +61,27 @@
                         <cells>
                             <Text text="{EmployeeID}"></Text>
                             <!-- <Text text="{ = ${oModel>FirstName} + '' + ${oModel>LastName}}"></Text> -->
-                            <Text text="{= ${FirstName} + ' ' + ${LastName} }" />
+                            <Text text="{= ${path :'FirstName', formatter:'.f.formatName'} + ' ' + ${LastName} }" />
+                            <Text text="{path:'BirthDate', formatter:'.f.formatDate'}"></Text>
+                            <Text text="{Address}"></Text>
+                            <Text text="{Region}"></Text>
+                            <ObjectStatus text="{Country}" state="{path:'Country', formatter:'.f.countryColor'}" ></ObjectStatus>
+
+                        
+                            <Text text="{Country}"></Text>
+                            <Image src="{= 'https://randomuser.me/api/portraits/men/' + ${EmployeeID} + '.jpg' }" width="50px" height="50px" />
+
+
                         </cells>
                     </ColumnListItem>
                 </items>
 
-            </Table> 
+            </Table>
 
+        </ScrollContainer>
+
+
+          
         </content>
         <footer>
 

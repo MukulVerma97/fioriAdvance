@@ -127,9 +127,7 @@
 
                         <Text text="Address"></Text>
                     </Column>
-                    <Column width="10
-                      
-                      rem">
+                    <Column width="10rem">
 
                         <Text text="Region"></Text>
                     </Column>
