@@ -15,11 +15,16 @@
             </Button>
 
   <ScrollContainer vertical="true" horizontal="true">
-            <Table items="{/Employees}">
+            <Table items="{/Employees}" mode="SingleSelectLeft" id="idTable">
                 <headerToolbar>
 
                     <Toolbar >
                         <Title text="Employee List"></Title>
+
+                        <ToolbarSpacer >   </ToolbarSpacer>
+                                   <Button text="Get Employee Deatils" press="getSelectedEmployeeData"></Button>
+                      
+             
 
                     </Toolbar>
                 </headerToolbar>
@@ -57,7 +62,7 @@
 
                 </columns>
                 <items>
-                    <ColumnListItem >
+                    <ColumnListItem  type="Active" press="onPressRow">
                         <cells>
                             <Text text="{EmployeeID}"></Text>
                             <!-- <Text text="{ = ${oModel>FirstName} + '' + ${oModel>LastName}}"></Text> -->
@@ -68,7 +73,7 @@
                             <ObjectStatus text="{Country}" state="{path:'Country', formatter:'.f.countryColor'}" ></ObjectStatus>
 
                         
-                            <Text text="{Country}"></Text>
+                      
                             <Image src="{= 'https://randomuser.me/api/portraits/men/' + ${EmployeeID} + '.jpg' }" width="50px" height="50px" />
 
 

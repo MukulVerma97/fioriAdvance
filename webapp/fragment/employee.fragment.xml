@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Dialog title="Select an Employee">
+
+        <Table items="{/Employees}">
+            <columns>
+
+                <Column >
+
+                    <Text text="Employee ID"></Text>
+
+                </Column>
+                <Column >
+
+                    <Text text="Name"></Text>
+
+                </Column>
+                <Column >
+
+                    <Text text="Region"></Text>
+
+                </Column>
+                <Column >
+
+                    <Text text="Address"></Text>
+
+                </Column>
+ 
+
+
+            </columns>
+
+            <items>
+            <ColumnListItem type="Active" press="onPressFragRow">
+            <cells>
+           
+                            <Text text="{EmployeeID}"></Text>
+                            <!-- <Text text="{ = ${oModel>FirstName} + '' + ${oModel>LastName}}"></Text> -->
+                            <Text text="{= ${path :'FirstName', formatter:'.f.formatName'} + ' ' + ${LastName} }" />
+                            
+                            <Text text="{Address}"></Text>
+                            <Text text="{Region}"></Text>
+                        
+
+                 
+            </cells>
+            
+            </ColumnListItem>
+            
+            </items>
+
+        </Table>
+
+<endButton>
+<Button text="Close" press="onDialogClose"></Button>
+</endButton>
+
+    </Dialog>
+
+
+
+</core:FragmentDefinition>

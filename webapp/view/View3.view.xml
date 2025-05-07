@@ -1,113 +1,138 @@
 <mvc:View xmlns:cards="sap.f.cards" controllerName="fiori2904.controller.View3"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
-    xmlns:f="sap.ui.layout.form"
-    xmlns:core="sap.ui.core">
-    <Page id="page3" title="{i18n>title}">
-        <content>
-            <HeaderContainer >
-
-                <Text text="This is Simple Form"></Text>
-
-            </HeaderContainer>
-
-            <VBox >
-            <Button text="Hello"></Button>
-               <Button text="Hello2"></Button>
-            </VBox>
-
-            <HBox >
-            
-               <Button text="Hello"></Button>
-               <Button text="Hello2"></Button>
-            </HBox>
-
-            <ObjectHeader title="Ui5" number="10000.0" numberUnit="INR" backgroundDesign="Solid">
-            
-            <attributes>
-             <ObjectAttribute title="Ui5" text="10012"></ObjectAttribute>
-             <ObjectAttribute text="Latest Version" title="version "></ObjectAttribute>
-            </attributes>
-            
-            <statuses>
-            <ObjectStatus text="RAP" state="Success"></ObjectStatus>
-            </statuses>
-            </ObjectHeader>
-
-            <IconTabBar >
-            <items>
-            <IconTabFilter icon="sap-icon://information">
-            <Text text="this is very good info"></Text>
-            </IconTabFilter>
-                        <IconTabFilter icon="sap-icon://notes">
-                          
-        <f:SimpleForm title="Employee Deatils" editable="true"  layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="2">
-        <f:content>
-        <core:Title text=" Basic Deatils "></core:Title>
-        <Label text="Employee ID">
-        </Label>
-        <Input ></Input>
-             <Label text="Employee Name">
-        </Label>
-        <Input ></Input>
-             <Label text="Employee Designation">
-        </Label>
-        <Input ></Input>
-
-<core:Title text="Contact Deatils"></core:Title>
-   
-             <Label text="Employee Address">
-        </Label>
-        <Input ></Input>
-             <Label text="Employee Email_Id">
-        </Label>
-        <Input ></Input>
-     <core:Title text="Skills"></core:Title>
-             <Label text="Employee Skills">
-        </Label>
-        <Input ></Input>
-        </f:content>
-        
-        </f:SimpleForm>
-                            </IconTabFilter>
-            </items>
-            
-            
-            </IconTabBar>
-
-        <f:SimpleForm title="Employee Deatils" editable="true"  layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="2">
-        <f:content>
-        <core:Title text=" Basic Deatils "></core:Title>
-        <Label text="Employee ID">
-        </Label>
-        <Input ></Input>
-             <Label text="Employee Name">
-        </Label>
-        <Input ></Input>
-             <Label text="Employee Designation">
-        </Label>
-        <Input ></Input>
-
-<core:Title text="Contact Deatils"></core:Title>
-   
-             <Label text="Employee Address">
-        </Label>
-        <Input ></Input>
-             <Label text="Employee Email_Id">
-        </Label>
-        <Input ></Input>
-     <core:Title text="Skills"></core:Title>
-             <Label text="Employee Skills">
-        </Label>
-        <Input ></Input>
-        </f:content>
-        
-        </f:SimpleForm>
-
-        </content>
+     xmlns:mvc="sap.ui.core.mvc"
+     xmlns="sap.m"
+     xmlns:f="sap.ui.layout.form"
+     xmlns:core="sap.ui.core">
+     <Page id="page3" title="{i18n>title}">
+          <content>
 
 
 
 
-    </Page>
+               <ObjectHeader title="Multi Value UI Elements" number="10000.0" numberUnit="INR" backgroundDesign="Solid">
+
+                    <attributes>
+                         <ObjectAttribute title="Ui5" text="10012"></ObjectAttribute>
+                         <ObjectAttribute text="Latest Version" title="version "></ObjectAttribute>
+                    </attributes>
+
+                    <statuses>
+                         <ObjectStatus text="RAP" state="Success"></ObjectStatus>
+                    </statuses>
+               </ObjectHeader>
+
+               <IconTabBar >
+                    <items>
+                         <IconTabFilter icon="sap-icon://information">
+                              <Text text="this is very good info"></Text>
+                         </IconTabFilter>
+                         <IconTabFilter icon="sap-icon://notes">
+
+                              <f:SimpleForm title="Employee Deatils" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="2">
+                                   <f:content>
+                                        <core:Title text=" Basic Deatils "></core:Title>
+                                        <Label text="Employee ID">
+                                        </Label>
+                                        <Input ></Input>
+                                        <Label text="Employee Name">
+
+
+                                        </Label>
+                                      <Select items="{/Employees}">
+                                      <items>
+                                      <core:Item text="{FirstName}"></core:Item>
+                                      </items>
+                                      
+                                      </Select>
+                                        <Label text="Employee Designation">
+                                        </Label>
+                                        <Input ></Input>
+
+                                        <core:Title text="Contact Deatils"></core:Title>
+
+                                        <Label text="Employee Address">
+                                        </Label>
+                                        <Input ></Input>
+                                        <Label text="Employee Email_Id">
+                                        </Label>
+                                        <Input ></Input>
+                                        <core:Title text="Skills"></core:Title>
+                                        <Label text="Employee Skills">
+                                        </Label>
+                                        <Input ></Input>
+                                   </f:content>
+
+                              </f:SimpleForm>
+                         </IconTabFilter>
+                    </items>
+
+
+               </IconTabBar>
+
+               <f:SimpleForm title="Employee Deatils" editable="true" layout="ResponsiveGridLayout" labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="2">
+                    <f:content>
+                         <core:Title text=" Basic Deatils "></core:Title>
+                         <Label text="Employee ID">
+                         </Label>
+                         <Input ></Input>
+                         <Label text="Employee Name">
+                         </Label>
+                          <!-- <Select items="{/Employees}">
+                                      <items>
+                                      <core:Item text="{FirstName}"></core:Item>
+                                      </items>
+                                      
+                                      </Select> -->
+                                      <MultiComboBox items="{/Employees}" showSelectAll="true" id="mlcb"  selectionFinish="onSelectionMCB">
+                                      <items>
+                                      <core:Item text="{FirstName}" key="{FirstName}" ></core:Item>
+                                      
+                                      </items>
+                                      </MultiComboBox>
+                         
+                         <Label text="Employee Designation">
+                         </Label>
+                         <Input ></Input>
+
+                         <core:Title text="Contact Deatils"></core:Title>
+
+                         <Label text="Employee Address">
+                         </Label>
+                         <ComboBox items="{/Employees}" id="combo" selectionChange="onSelectionCombo ">
+                         <items>
+                         <core:Item text="{Address}" key="{Address}"></core:Item>
+                         </items>
+                         
+                         </ComboBox>
+                         <Label text="Employee Email_Id">
+                         </Label>
+                         <Input ></Input>
+                         <core:Title text="Country"></core:Title>
+                         <Label text="Country">
+                         </Label>
+                         <RadioButtonGroup buttons="{countryModel>/Countries}" columns="2" selectedIndex="-1" >
+                         <buttons>
+                         <RadioButton text="{countryModel>Country}"></RadioButton>
+                         </buttons>
+                         
+                         </RadioButtonGroup>
+                       
+                    </f:content>
+
+               </f:SimpleForm>
+
+<Button text="Submit Form" press="onSimpleForm"></Button>
+          </content>
+
+          <footer>
+               <Bar >
+
+                    <contentRight>
+                         <Button text="Products" icon="sap-icon://product" press="onProductPress"></Button>
+                    </contentRight>
+               </Bar>
+          </footer>
+
+
+     </Page>
 </mvc:View>

@@ -122,6 +122,11 @@
           "target": [
             "TargetView3"
           ]
+        },
+        {
+          "name":"Products",
+          "pattern": "productsPage",
+          "target":["TargetProduct"]
         }
       ],
       "targets": {
@@ -146,8 +151,16 @@
           "name": "View3",   
           "clearControlAggregation": false 
           
+        },
+        "TargetProduct":{
+          "viewId": "Products",
+          "viewType": "XML",
+          "name": "Products",   
+          "clearControlAggregation": false 
+          
         }
       }
+    
     },
     "rootView": {
       "viewName": "fiori2904.view.App",
