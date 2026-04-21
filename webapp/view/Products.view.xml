@@ -1,42 +1,65 @@
-<mvc:View xmlns:cards="sap.f.cards" controllerName="fiori2904.controller.Products"
+<mvc:View controllerName="fiori2904.controller.Products"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core">
-    <Page id="Products" title="{i18n>title3}">
+    <Page id="Products" title="{i18n>title3}" showNavButton="true" navButtonPress="onNavBack">
+        <subHeader>
+            <Toolbar>
+                <SearchField id="productSearchField" placeholder="Search by product name..."
+                    liveChange="onSearch" width="60%" />
+                <ToolbarSpacer />
+                <Select id="categoryFilter" change="onCategoryFilter" forceSelection="false">
+                    <core:Item key="" text="All Categories" />
+                </Select>
+                <Button icon="sap-icon://sort" press="onSort" tooltip="Toggle Sort" type="Transparent" />
+            </Toolbar>
+        </subHeader>
         <content>
-        <List items="{/Products}">
-        
-        <headerToolbar>
-        
-        <Toolbar ><Title text="Product List"></Title>
-        </Toolbar>
-        </headerToolbar>
-        
-        
-        <items>
-        <ObjectListItem title="{ProductName}" number="{path:'UnitPrice',formatter:'.f.addCurrency'}" numberUnit="{UnitsInStock}">
-        
-        <attributes>
-        <ObjectAttribute title="Quantity/unit" text="{QuantityPerUnit}"></ObjectAttribute>
-        <ObjectAttribute title="UnitsInStock" text="{UnitsInStock}"></ObjectAttribute>
-
-
-        </attributes>
-        <firstStatus>
-        <ObjectStatus text="{Discontinued}" state="{path:'Discontinued', formatter:'.f.formatDiscontinued'}"></ObjectStatus>
-        
-        </firstStatus>
-        
-        
-        </ObjectListItem>
-        
-        </items>
-        
-        
-        </List>
-        
-
-          </content>
+            <List id="productList" items="{
+                path: '/Products',
+                sorter: { path: 'ProductName' }
+            }" growing="true" growingThreshold="25" noDataText="No products found.">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="{i18n>productListTitle}" />
+                        <ToolbarSpacer />
+                    </Toolbar>
+                </headerToolbar>
+                <items>
+                    <ObjectListItem
+                        title="{ProductName}"
+                        number="{path:'UnitPrice', formatter:'.f.addCurrency'}"
+                        type="Active"
+                        press="onProductItemPress">
+                        <attributes>
+                            <ObjectAttribute title="Qty/Unit" text="{QuantityPerUnit}" />
+                            <ObjectAttribute title="In Stock" text="{UnitsInStock}" />
+                            <ObjectAttribute title="On Order" text="{UnitsOnOrder}" />
+                            <ObjectAttribute title="Reorder Level" text="{ReorderLevel}" />
+                        </attributes>
+                        <firstStatus>
+                            <ObjectStatus
+                                text="{path:'Discontinued', formatter:'.f.formatDiscontinuedText'}"
+                                state="{path:'Discontinued', formatter:'.f.formatDiscontinued'}" />
+                        </firstStatus>
+                        <secondStatus>
+                            <ObjectStatus
+                                text="{parts: ['UnitsInStock', 'ReorderLevel'], formatter:'.f.formatStockStatus'}"
+                                state="{parts: ['UnitsInStock', 'ReorderLevel'], formatter:'.f.formatStockState'}" />
+                        </secondStatus>
+                    </ObjectListItem>
+                </items>
+            </List>
+        </content>
+        <footer>
+            <Bar>
+                <contentLeft>
+                    <Button text="Dashboard" icon="sap-icon://home" press="onNavBack" />
+                </contentLeft>
+                <contentRight>
+                    <Button text="Orders" icon="sap-icon://sales-order" press="onNavOrders" type="Emphasized" />
+                </contentRight>
+            </Bar>
+        </footer>
     </Page>
 </mvc:View>

@@ -1,188 +1,123 @@
 <mvc:View controllerName="fiori2904.controller.View2"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m" displayBlock="true"
-    xmlns:l="sap.ui.layout">
-    <Page id="page2" title="{i18n>title2}">
-        <!-- 
-    <Button id="btnsub2" text="Hello I am at View 2" press="onstbn">
-    
-    </Button> -->
-
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Page id="page2" title="{i18n>title2}" showNavButton="true" navButtonPress="onNavBack">
         <content>
-            <Panel headerText="Employee Details" expandable="false" expandAnimation="true">
-                <l:Grid defaultSpan="L6 M6" vSpacing="0">
-                    <l:content>
+            <!-- Employee Header -->
+            <ObjectHeader id="empEditHeader"
+                title="{FirstName} {LastName}"
+                number="{EmployeeID}"
+                numberUnit="ID"
+                icon="{path:'EmployeeID', formatter:'.f.formatEmployeePhoto'}"
+                backgroundDesign="Solid"
+                class="empDetailHeader">
+                <attributes>
+                    <ObjectAttribute title="Title" text="{Title}" />
+                    <ObjectAttribute title="Country" text="{Country}" />
+                </attributes>
+                <statuses>
+                    <ObjectStatus text="{Country}" state="{path:'Country', formatter:'.f.countryColor'}" />
+                </statuses>
+            </ObjectHeader>
+
+            <!-- Employee Details Panel -->
+            <Panel headerText="Employee Details" expandable="false">
+                <f:SimpleForm editable="true" layout="ResponsiveGridLayout"
+                    labelSpanL="3" labelSpanM="3" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="2">
+                    <f:content>
+                        <core:Title text="Basic Details" />
                         <Label text="Employee ID" />
-                       <Input id="empId" showValueHelp="true" valueHelpRequest="onPressValueHelpDAilog"></Input>
-                        <Label text="Employee Name" />
-                        <Input />
-                        <Label text="Employee Designation" />
-                        <Input />
-                        <Label text="Employee Skill" />
-                        <Input />
-                        <Label text="Employee Email Id" />
-                        <Input />
-                        <Label text="EmployeePhone No" />
-                        <Input />
-                    </l:content>
-                </l:Grid>
+                        <Input id="empId" value="{EmployeeID}" enabled="false" showValueHelp="true" valueHelpRequest="onPressValueHelpDAilog" />
+                        <Label text="First Name" />
+                        <Input id="empFirstName" value="{FirstName}" />
+                        <Label text="Last Name" />
+                        <Input id="empLastName" value="{LastName}" />
+                        <Label text="Title" />
+                        <Input id="empTitle" value="{Title}" />
+                        <Label text="Title of Courtesy" />
+                        <Input id="empCourtesy" value="{TitleOfCourtesy}" />
+
+                        <core:Title text="Contact Details" />
+                        <Label text="Address" />
+                        <Input id="empAddress" value="{Address}" />
+                        <Label text="City" />
+                        <Input id="empCity" value="{City}" />
+                        <Label text="Region" />
+                        <Input id="empRegion" value="{Region}" />
+                        <Label text="Postal Code" />
+                        <Input id="empPostalCode" value="{PostalCode}" />
+                        <Label text="Country" />
+                        <Input id="empCountry" value="{Country}" />
+                        <Label text="Home Phone" />
+                        <Input id="empPhone" value="{HomePhone}" type="Tel" />
+                        <Label text="Extension" />
+                        <Input id="empExtension" value="{Extension}" />
+                    </f:content>
+                </f:SimpleForm>
             </Panel>
 
-            <Panel headerText="Family Details" expandable="true">
-                <l:Grid defaultSpan="L3 M3" vSpacing="0">
-                    <l:content>
-                        <Label text="Employee ID" />
-                        <Input />
-                        <Label text="Employee Name" />
-                        <Input />
-                        <Label text="Employee Designation" />
-                        <Input />
-                        <Label text="Employee Skill" />
-                        <Input />
-                        <Label text="Employee Email Id" />
-                        <Input />
-                        <Label text="EmployeePhone No" />
-                        <Input />
-                    </l:content>
-                </l:Grid>
+            <!-- Manager Info Panel -->
+            <Panel headerText="Manager Information" expandable="true" expanded="false">
+                <f:SimpleForm editable="false" layout="ResponsiveGridLayout"
+                    labelSpanL="3" labelSpanM="3" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="2">
+                    <f:content>
+                        <Label text="Reports To (ID)" />
+                        <Text text="{ReportsTo}" />
+                        <Label text="Notes" />
+                        <Text text="{Notes}" wrapping="true" />
+                    </f:content>
+                </f:SimpleForm>
             </Panel>
 
-            <Panel headerText="Deatils" expandable="true">
-                <l:Grid vSpacing="0">
-                    <l:content>
-                        <Label text="Employee Name">
-                            <layoutData>
-                                <l:GridData span="L3 M3" />
-                            </layoutData>
-                        </Label>
-                        <Input>
-                            <layoutData>
-                                <l:GridData span="L9 M9" />
-                            </layoutData>
-                        </Input>
-
-                        <Label text="Employee Designation">
-                            <layoutData>
-                                <l:GridData span="L3 M3" />
-                            </layoutData>
-                        </Label>
-                        <Input>
-                            <layoutData>
-                                <l:GridData span="L3 M3" />
-                            </layoutData>
-                        </Input>
-                        <Label text="Employee Skill">
-                            <layoutData>
-                                <l:GridData span="L3 M3" />
-                            </layoutData>
-                        </Label>
-                        <Input>
-                            <layoutData>
-                                <l:GridData span="L3 M3" />
-                            </layoutData>
-                        </Input>
-
-                        <Label text="Employee address">
-                            <layoutData>
-                                <l:GridData span="L3 M3"></l:GridData>
-                            </layoutData>
-                        </Label>
-                        <Input >
-                            <layoutData>
-                                <l:GridData span="L9 M9"></l:GridData>
-                            </layoutData>
-                        </Input>
-                    </l:content>
-                </l:Grid>
-            </Panel>
-        </content>
-        <ScrollContainer vertical="true" horizontal="true">
-            <Table items="{empModel>/results}">
+            <!-- Employee Table from empModel -->
+            <Table items="{empModel>/results}" id="empModelTable">
                 <headerToolbar>
-
-                    <Toolbar >
-                        <Title text="Employee List"></Title>
-
+                    <Toolbar>
+                        <Title text="All Employees (JSON Model)" />
+                        <ToolbarSpacer />
+                        <Label text="{empModel>/results/length} records" />
                     </Toolbar>
                 </headerToolbar>
                 <columns>
-
-                    <Column width="5rem">
-
-                        <Text text="S.No"></Text>
-                    </Column>
-                    <Column width="5rem">
-
-                        <Text text=" Employee ID"></Text>
-                    </Column>
-                    <Column width="10rem">
-
-                        <Text text="Name"></Text>
-                    </Column>
-                    <Column width="20rem">
-
-                        <Text text="BirthDate"></Text>
-                    </Column>
-                    <Column width="15rem">
-
-                        <Text text="Address"></Text>
-                    </Column>
-                    <Column width="10rem">
-
-                        <Text text="Region"></Text>
-                    </Column>
-                    <Column width="10rem">
-
-                        <Text text="Country"></Text>
-                    </Column>
-                    <Column width="10rem">
-
-                        <Text text="Photo"></Text>
-                    </Column>
-
-
+                    <Column width="4rem"><Text text="{i18n>colSno}" /></Column>
+                    <Column width="5rem"><Text text="{i18n>colEmployeeID}" /></Column>
+                    <Column width="10rem"><Text text="{i18n>colName}" /></Column>
+                    <Column width="9rem"><Text text="{i18n>colBirthDate}" /></Column>
+                    <Column width="10rem" demandPopin="true" minScreenWidth="Tablet"><Text text="{i18n>colAddress}" /></Column>
+                    <Column width="7rem" demandPopin="true" minScreenWidth="Tablet"><Text text="{i18n>colRegion}" /></Column>
+                    <Column width="6rem"><Text text="{i18n>colCountry}" /></Column>
+                    <Column width="5rem"><Text text="{i18n>colPhoto}" /></Column>
                 </columns>
                 <items>
-                    <ColumnListItem >
+                    <ColumnListItem>
                         <cells>
-                            <Text text="{empModel>Sno}"></Text>
-                            <Text text="{empModel>EmployeeID}"></Text>
-                            <!-- <Text text="{ = ${oModel>FirstName} + '' + ${oModel>LastName}}"></Text> -->
+                            <Text text="{empModel>Sno}" />
+                            <ObjectIdentifier title="{empModel>EmployeeID}" />
                             <Text text="{= ${empModel>FirstName} + ' ' + ${empModel>LastName} }" />
-                            <Text text="{empModel>BirthDate}"></Text>
-                            <Text text="{empModel>Address}"></Text>
-                            <Text text="{empModel>Region}"></Text>
-                            <Text text="{empModel>Country}"></Text>
-                            <Image src="{= 'https://randomuser.me/api/portraits/men/' + ${empModel>EmployeeID} + '.jpg' }" width="50px" height="50px" />
-
-
+                            <Text text="{path:'empModel>BirthDate', formatter:'.f.formatDate'}" />
+                            <Text text="{empModel>Address}" />
+                            <Text text="{empModel>Region}" />
+                            <ObjectStatus text="{empModel>Country}" state="{path:'empModel>Country', formatter:'.f.countryColor'}" />
+                            <Image src="{= 'https://randomuser.me/api/portraits/men/' + ${empModel>EmployeeID} + '.jpg' }"
+                                width="40px" height="40px" class="empPhotoSmall" />
                         </cells>
                     </ColumnListItem>
                 </items>
-
             </Table>
-
-        </ScrollContainer>
-
-
-
-
-
-
-
-
-
-
-
-
+        </content>
 
         <footer>
-            <Bar >
+            <Bar>
+                <contentLeft>
+                    <Button text="Dashboard" icon="sap-icon://home" press="onNavBack" />
+                </contentLeft>
                 <contentRight>
-                    <Button text="Simple Form" type="Emphasized" press="onSimple"></Button>
-
+                    <Button text="Save" icon="sap-icon://save" type="Emphasized" press="onSave" />
+                    <Button text="Order Entry" icon="sap-icon://create-form" press="onSimple" />
                 </contentRight>
-
             </Bar>
         </footer>
     </Page>

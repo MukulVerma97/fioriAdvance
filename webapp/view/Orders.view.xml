@@ -1,0 +1,81 @@
+<mvc:View controllerName="fiori2904.controller.Orders"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="ordersPage" title="{i18n>titleOrders}" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <Table id="ordersTable" items="{
+                path: '/Orders',
+                sorter: { path: 'OrderID', descending: true }
+            }" growing="true" growingThreshold="30" noDataText="No orders found.">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="{i18n>orderListTitle}" />
+                        <ToolbarSpacer />
+                        <SearchField id="orderSearchField" placeholder="Search by Order ID or Customer..."
+                            search="onSearch" width="300px" />
+                        <Button icon="sap-icon://sort" press="onSort" tooltip="Sort" type="Transparent" />
+                    </Toolbar>
+                </headerToolbar>
+                <infoToolbar>
+                    <Toolbar>
+                        <Label text="Filter by Ship Country:" />
+                        <Select id="countryFilter" change="onCountryFilter" forceSelection="false">
+                            <core:Item key="" text="All Countries" />
+                            <core:Item key="USA" text="USA" />
+                            <core:Item key="Germany" text="Germany" />
+                            <core:Item key="Brazil" text="Brazil" />
+                            <core:Item key="France" text="France" />
+                            <core:Item key="UK" text="UK" />
+                            <core:Item key="Austria" text="Austria" />
+                            <core:Item key="Sweden" text="Sweden" />
+                            <core:Item key="Switzerland" text="Switzerland" />
+                        </Select>
+                    </Toolbar>
+                </infoToolbar>
+                <columns>
+                    <Column width="6rem"><Text text="{i18n>colOrderID}" /></Column>
+                    <Column width="8rem"><Text text="{i18n>colCustomerID}" /></Column>
+                    <Column width="6rem" demandPopin="true" minScreenWidth="Tablet"><Text text="Employee" /></Column>
+                    <Column width="9rem"><Text text="{i18n>colOrderDate}" /></Column>
+                    <Column width="9rem" demandPopin="true" minScreenWidth="Tablet"><Text text="{i18n>colRequiredDate}" /></Column>
+                    <Column width="9rem"><Text text="{i18n>colShippedDate}" /></Column>
+                    <Column width="7rem" hAlign="End"><Text text="{i18n>colFreight}" /></Column>
+                    <Column width="8rem" demandPopin="true" minScreenWidth="Desktop"><Text text="{i18n>colShipCity}" /></Column>
+                    <Column width="8rem"><Text text="{i18n>colShipCountry}" /></Column>
+                    <Column width="7rem" hAlign="Center"><Text text="{i18n>colShippingStatus}" /></Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active" press="onOrderPress">
+                        <cells>
+                            <ObjectIdentifier title="{OrderID}" />
+                            <Text text="{CustomerID}" />
+                            <Text text="{EmployeeID}" />
+                            <Text text="{path:'OrderDate', formatter:'.f.formatDate'}" />
+                            <Text text="{path:'RequiredDate', formatter:'.f.formatDate'}" />
+                            <Text text="{path:'ShippedDate', formatter:'.f.formatDate'}" />
+                            <Text text="{path:'Freight', formatter:'.f.formatFreight'}" />
+                            <Text text="{ShipCity}" />
+                            <Text text="{ShipCountry}" />
+                            <ObjectStatus
+                                text="{path:'ShippedDate', formatter:'.f.formatShippingStatus'}"
+                                state="{path:'ShippedDate', formatter:'.f.formatShippingState'}"
+                                icon="{path:'ShippedDate', formatter:'.f.formatShippingIcon'}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+
+        <footer>
+            <Bar>
+                <contentLeft>
+                    <Button text="Dashboard" icon="sap-icon://home" press="onNavBack" />
+                </contentLeft>
+                <contentRight>
+                    <Button text="Customers" icon="sap-icon://customer" press="onNavCustomers" type="Emphasized" />
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,132 @@
+<mvc:View controllerName="fiori2904.controller.EmployeeDetail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Page id="employeeDetailPage" title="{i18n>titleEmployeeDetail}" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <!-- Employee Object Header -->
+            <ObjectHeader id="empObjHeader"
+                title="{FirstName} {LastName}"
+                number="{path:'HireDate', formatter:'.f.formatDate'}"
+                numberUnit="Hired"
+                icon="{path:'EmployeeID', formatter:'.f.formatEmployeePhoto'}"
+                backgroundDesign="Solid"
+                class="empDetailHeader">
+                <attributes>
+                    <ObjectAttribute title="Title" text="{Title}" />
+                    <ObjectAttribute title="City" text="{City}" />
+                    <ObjectAttribute title="Country" text="{Country}" />
+                </attributes>
+                <statuses>
+                    <ObjectStatus text="{Country}" state="{path:'Country', formatter:'.f.countryColor'}" />
+                    <ObjectStatus text="{TitleOfCourtesy}" state="Information" />
+                </statuses>
+            </ObjectHeader>
+
+            <!-- Tabs -->
+            <IconTabBar id="empDetailTabs" expandable="false" stretchContentHeight="true">
+                <items>
+                    <!-- Personal Info Tab -->
+                    <IconTabFilter icon="sap-icon://person-placeholder" text="Personal Info" key="info">
+                        <f:SimpleForm title="Personal Information" editable="false" layout="ResponsiveGridLayout"
+                            labelSpanL="3" labelSpanM="3" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="2">
+                            <f:content>
+                                <core:Title text="Identity" />
+                                <Label text="Employee ID" />
+                                <Text text="{EmployeeID}" />
+                                <Label text="Full Name" />
+                                <Text text="{TitleOfCourtesy} {FirstName} {LastName}" />
+                                <Label text="Title" />
+                                <Text text="{Title}" />
+                                <Label text="Birth Date" />
+                                <Text text="{path:'BirthDate', formatter:'.f.formatDate'}" />
+                                <Label text="Hire Date" />
+                                <Text text="{path:'HireDate', formatter:'.f.formatDate'}" />
+
+                                <core:Title text="Contact" />
+                                <Label text="Address" />
+                                <Text text="{Address}" />
+                                <Label text="City" />
+                                <Text text="{City}" />
+                                <Label text="Region" />
+                                <Text text="{Region}" />
+                                <Label text="Postal Code" />
+                                <Text text="{PostalCode}" />
+                                <Label text="Country" />
+                                <ObjectStatus text="{Country}" state="{path:'Country', formatter:'.f.countryColor'}" />
+                                <Label text="Home Phone" />
+                                <Text text="{HomePhone}" />
+                                <Label text="Extension" />
+                                <Text text="{Extension}" />
+                            </f:content>
+                        </f:SimpleForm>
+                    </IconTabFilter>
+
+                    <!-- Notes Tab -->
+                    <IconTabFilter icon="sap-icon://notes" text="Notes" key="notes">
+                        <f:SimpleForm title="Employee Notes" editable="false" layout="ResponsiveGridLayout"
+                            labelSpanL="2" labelSpanM="2" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1">
+                            <f:content>
+                                <Label text="Bio / Notes" />
+                                <Text text="{Notes}" wrapping="true" />
+                            </f:content>
+                        </f:SimpleForm>
+                    </IconTabFilter>
+
+                    <!-- Orders Tab -->
+                    <IconTabFilter icon="sap-icon://sales-order" text="Orders" key="orders" count="{empDetailModel>/orderCount}">
+                        <Table id="empOrdersTable" items="{Orders}" noDataText="No orders found for this employee.">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Title text="Orders Handled" />
+                                    <ToolbarSpacer />
+                                    <Label text="{empDetailModel>/orderCount} Orders" design="Bold" />
+                                </Toolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column width="6rem"><Text text="Order ID" /></Column>
+                                <Column width="8rem"><Text text="Customer" /></Column>
+                                <Column width="10rem"><Text text="Order Date" /></Column>
+                                <Column width="10rem"><Text text="Required Date" /></Column>
+                                <Column width="10rem"><Text text="Shipped Date" /></Column>
+                                <Column width="8rem"><Text text="Freight" /></Column>
+                                <Column width="8rem"><Text text="Ship Country" /></Column>
+                                <Column width="8rem"><Text text="Status" /></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{OrderID}" />
+                                        <Text text="{CustomerID}" />
+                                        <Text text="{path:'OrderDate', formatter:'.f.formatDate'}" />
+                                        <Text text="{path:'RequiredDate', formatter:'.f.formatDate'}" />
+                                        <Text text="{path:'ShippedDate', formatter:'.f.formatDate'}" />
+                                        <Text text="{path:'Freight', formatter:'.f.formatFreight'}" />
+                                        <Text text="{ShipCountry}" />
+                                        <ObjectStatus
+                                            text="{path:'ShippedDate', formatter:'.f.formatShippingStatus'}"
+                                            state="{path:'ShippedDate', formatter:'.f.formatShippingState'}"
+                                            icon="{path:'ShippedDate', formatter:'.f.formatShippingIcon'}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+
+        <footer>
+            <Bar>
+                <contentLeft>
+                    <Button text="Edit Details" icon="sap-icon://edit" type="Emphasized" press="onEditEmployee" />
+                </contentLeft>
+                <contentRight>
+                    <Button text="Back to Dashboard" icon="sap-icon://home" press="onNavBack" />
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

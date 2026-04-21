@@ -1,0 +1,54 @@
+<mvc:View controllerName="fiori2904.controller.Customers"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="customersPage" title="{i18n>titleCustomers}" showNavButton="true" navButtonPress="onNavBack">
+        <subHeader>
+            <Toolbar>
+                <SearchField id="customerSearchField" placeholder="Search by Company, Contact, City or Country..."
+                    liveChange="onSearch" width="100%" />
+            </Toolbar>
+        </subHeader>
+        <content>
+            <List id="customerList" items="{
+                path: '/Customers',
+                sorter: { path: 'Country', group: true }
+            }" growing="true" growingThreshold="25" noDataText="No customers found.">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="{i18n>customerListTitle}" />
+                        <ToolbarSpacer />
+                        <Button icon="sap-icon://sort" press="onSort" tooltip="Toggle Sort" type="Transparent" />
+                    </Toolbar>
+                </headerToolbar>
+                <items>
+                    <ObjectListItem
+                        title="{CompanyName}"
+                        number="{Country}"
+                        type="Active"
+                        press="onCustomerPress">
+                        <attributes>
+                            <ObjectAttribute title="Contact" text="{ContactName}" />
+                            <ObjectAttribute title="Title" text="{ContactTitle}" />
+                            <ObjectAttribute title="City" text="{City}" />
+                            <ObjectAttribute title="Phone" text="{Phone}" />
+                        </attributes>
+                        <firstStatus>
+                            <ObjectStatus text="{Country}" state="{path:'Country', formatter:'.f.countryColor'}" />
+                        </firstStatus>
+                    </ObjectListItem>
+                </items>
+            </List>
+        </content>
+
+        <footer>
+            <Bar>
+                <contentLeft>
+                    <Button text="Dashboard" icon="sap-icon://home" press="onNavBack" />
+                </contentLeft>
+                <contentRight>
+                    <Button text="Orders" icon="sap-icon://sales-order" press="onNavOrders" type="Emphasized" />
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

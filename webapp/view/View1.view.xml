@@ -1,107 +1,111 @@
 <mvc:View controllerName="fiori2904.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}" class="dashboardPage">
         <content>
-            <Text id="id_text" text="Welcome to UI5" textAlign="Center" width="100%" class="sapMH1FontSize"></Text>
+            <!-- Quick Navigation Toolbar -->
+            <Toolbar class="quickNavToolbar">
+                <ToolbarSpacer />
+                <Button text="Employees" icon="sap-icon://employee" type="Transparent" press="onNavSelf" />
+                <Button text="Products" icon="sap-icon://product" type="Transparent" press="onNavProducts" />
+                <Button text="Orders" icon="sap-icon://sales-order" type="Transparent" press="onNavOrders" />
+                <Button text="Customers" icon="sap-icon://customer" type="Transparent" press="onNavCustomers" />
+                <Button text="Order Entry" icon="sap-icon://create-form" type="Transparent" press="onNavOrderEntry" />
+            </Toolbar>
 
+            <!-- KPI Tiles Section -->
+            <FlexBox direction="Row" wrap="Wrap" class="kpiTileContainer" justifyContent="Start">
+                <VBox class="kpiTile kpiTileEmployees">
+                    <core:Icon src="sap-icon://employee" class="kpiTileIcon" />
+                    <Text text="{kpiModel>/employeeCount}" class="kpiTileValue" />
+                    <Text text="EMPLOYEES" class="kpiTileLabel" />
+                </VBox>
+                <VBox class="kpiTile kpiTileProducts">
+                    <core:Icon src="sap-icon://product" class="kpiTileIcon" />
+                    <Text text="{kpiModel>/productCount}" class="kpiTileValue" />
+                    <Text text="PRODUCTS" class="kpiTileLabel" />
+                </VBox>
+                <VBox class="kpiTile kpiTileOrders">
+                    <core:Icon src="sap-icon://sales-order" class="kpiTileIcon" />
+                    <Text text="{kpiModel>/orderCount}" class="kpiTileValue" />
+                    <Text text="ORDERS" class="kpiTileLabel" />
+                </VBox>
+                <VBox class="kpiTile kpiTileCustomers">
+                    <core:Icon src="sap-icon://customer" class="kpiTileIcon" />
+                    <Text text="{kpiModel>/customerCount}" class="kpiTileValue" />
+                    <Text text="CUSTOMERS" class="kpiTileLabel" />
+                </VBox>
+            </FlexBox>
 
-
-            <Label text="Emmployee" required="true" id="nameLabel"></Label>
-            <Input maxLength="12" width="30%" value="Mukul" id="idName"></Input>
-            <Button text="goto View 2" press="onSubmit" type="Emphasized" class="sapUiTinyMarginBegin" id="btn1">
-
-            </Button>
-
-  <ScrollContainer vertical="true" horizontal="true">
-            <Table items="{/Employees}" mode="SingleSelectLeft" id="idTable">
-                <headerToolbar>
-
-                    <Toolbar >
-                        <Title text="Employee List"></Title>
-
-                        <ToolbarSpacer >   </ToolbarSpacer>
-                                   <Button text="Get Employee Deatils" press="getSelectedEmployeeData"></Button>
-                      
-             
-
-                    </Toolbar>
-                </headerToolbar>
-                <columns>
-
-                    <Column width="5rem">
-
-                        <Text text=" Employee ID"></Text>
-                    </Column>
-                    <Column width="10rem">
- 
-                        <Text text="Name"></Text>
-                    </Column>
-                    <Column width="8rem">
-
-                        <Text text="BirthDate"></Text>
-                    </Column>
-                    <Column width="15rem">
-
-                        <Text text="Address"></Text>
-                    </Column>
-                    <Column width="10rem">
-
-                        <Text text="Region"></Text>
-                    </Column>
-                    <Column width="10rem">
-
-                        <Text text="Country"></Text>
-                    </Column>
-                    <Column width="10rem">
-
-                        <Text text="Photo"></Text>
-                    </Column>
-
-
-                </columns>
+            <!-- Employee Table with Search and Filtering -->
+            <IconTabBar id="empCountryTabs" select="onTabSelect" expandable="false">
                 <items>
-                    <ColumnListItem  type="Active" press="onPressRow">
-                        <cells>
-                            <Text text="{EmployeeID}"></Text>
-                            <!-- <Text text="{ = ${oModel>FirstName} + '' + ${oModel>LastName}}"></Text> -->
-                            <Text text="{= ${path :'FirstName', formatter:'.f.formatName'} + ' ' + ${LastName} }" />
-                            <Text text="{path:'BirthDate', formatter:'.f.formatDate'}"></Text>
-                            <Text text="{Address}"></Text>
-                            <Text text="{Region}"></Text>
-                            <ObjectStatus text="{Country}" state="{path:'Country', formatter:'.f.countryColor'}" ></ObjectStatus>
-
-                        
-                      
-                            <Image src="{= 'https://randomuser.me/api/portraits/men/' + ${EmployeeID} + '.jpg' }" width="50px" height="50px" />
-
-
-                        </cells>
-                    </ColumnListItem>
+                    <IconTabFilter text="All" key="All" icon="sap-icon://world" count="{kpiModel>/employeeCount}" />
+                    <IconTabFilter text="USA" key="USA" icon="sap-icon://flag" iconColor="Positive" />
+                    <IconTabFilter text="UK" key="UK" icon="sap-icon://flag" iconColor="Critical" />
                 </items>
+            </IconTabBar>
 
-            </Table>
-
-        </ScrollContainer>
-
-
-          
+            <ScrollContainer horizontal="true" vertical="false" height="auto" width="100%">
+                <Table items="{/Employees}" mode="SingleSelectLeft" id="idTable" growing="true" growingThreshold="20"
+                    autoPopinMode="true" fixedLayout="false">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="{i18n>employeeListTitle}" />
+                            <ToolbarSpacer />
+                            <SearchField id="empSearchField" placeholder="Search by Name or Country..."
+                                liveChange="onSearch" width="250px" />
+                            <Button text="Get Details" icon="sap-icon://detail-view" press="getSelectedEmployeeData" type="Transparent" />
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column width="4rem" importance="High">
+                            <Text text="{i18n>colEmployeeID}" />
+                        </Column>
+                        <Column width="9rem" importance="High">
+                            <Text text="{i18n>colName}" />
+                        </Column>
+                        <Column width="7rem" importance="Medium" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+                            <Text text="{i18n>colTitle}" />
+                        </Column>
+                        <Column width="7rem" importance="Medium" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+                            <Text text="{i18n>colBirthDate}" />
+                        </Column>
+                        <Column width="7rem" importance="Low" demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline">
+                            <Text text="{i18n>colHireDate}" />
+                        </Column>
+                        <Column width="9rem" importance="Low" demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline">
+                            <Text text="{i18n>colAddress}" />
+                        </Column>
+                        <Column width="5rem" importance="Medium" demandPopin="true" minScreenWidth="Tablet" popinDisplay="Inline">
+                            <Text text="{i18n>colCity}" />
+                        </Column>
+                        <Column width="5rem" importance="High">
+                            <Text text="{i18n>colCountry}" />
+                        </Column>
+                        <Column width="4rem" importance="Low" demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline">
+                            <Text text="{i18n>colPhoto}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Navigation" press="onPressRow">
+                            <cells>
+                                <ObjectIdentifier title="{EmployeeID}" />
+                                <Text text="{= ${TitleOfCourtesy} + ' ' + ${FirstName} + ' ' + ${LastName}}" />
+                                <Text text="{Title}" />
+                                <Text text="{path:'BirthDate', formatter:'.f.formatDate'}" />
+                                <Text text="{path:'HireDate', formatter:'.f.formatDate'}" />
+                                <Text text="{Address}" />
+                                <Text text="{City}" />
+                                <ObjectStatus text="{Country}" state="{path:'Country', formatter:'.f.countryColor'}" />
+                                <Image src="{= 'https://randomuser.me/api/portraits/men/' + ${EmployeeID} + '.jpg' }"
+                                    width="40px" height="40px" class="empPhotoSmall" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
         </content>
-        <footer>
-
-            <Bar>
-                <contentRight>
-                    <Button id="btnsub" text="goto View 2" press="onsbt">
-
-                    </Button>
-                </contentRight>   
-            </Bar>
-
-
-        </footer>
-
-
-
     </Page>
 </mvc:View>

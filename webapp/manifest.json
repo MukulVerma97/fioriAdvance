@@ -49,7 +49,9 @@
       "minUI5Version": "1.135.0",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.uxap": {}
       }
     },
     "contentDensities": {
@@ -68,19 +70,19 @@
         "preload": true,
         "settings": {
           "defaultBindingMode": "TwoWay",
-          "defaultCountMode" : "Inline",
-          "refreshAfterChange":false,
-          "metadataURLParams":{
-            "sap-value-list":"none"
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false,
+          "metadataURLParams": {
+            "sap-value-list": "none"
           }
         }
       },
-
-      "empModel":{
-              "type": "sap.ui.model.json.JSONModel"
-
+      "empModel": {
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "kpiModel": {
+        "type": "sap.ui.model.json.JSONModel"
       }
-
     },
     "resources": {
       "css": [
@@ -111,7 +113,7 @@
         },
         {
           "name": "RouteView2",
-          "pattern": "gridView",
+          "pattern": "gridView/{employeeId}",
           "target": [
             "TargetView2"
           ]
@@ -124,9 +126,32 @@
           ]
         },
         {
-          "name":"Products",
+          "name": "Products",
           "pattern": "productsPage",
-          "target":["TargetProduct"]
+          "target": [
+            "TargetProduct"
+          ]
+        },
+        {
+          "name": "EmployeeDetail",
+          "pattern": "employee/{employeeId}",
+          "target": [
+            "TargetEmployeeDetail"
+          ]
+        },
+        {
+          "name": "Orders",
+          "pattern": "orders",
+          "target": [
+            "TargetOrders"
+          ]
+        },
+        {
+          "name": "Customers",
+          "pattern": "customers",
+          "target": [
+            "TargetCustomers"
+          ]
         }
       ],
       "targets": {
@@ -134,33 +159,45 @@
           "viewId": "View1",
           "viewType": "XML",
           "name": "View1",
-         
-          "clearControlAggregation": false 
-          
+          "clearControlAggregation": false
         },
         "TargetView2": {
           "viewId": "View2",
           "viewType": "XML",
-          "name": "View2",   
-          "clearControlAggregation": false 
-          
+          "name": "View2",
+          "clearControlAggregation": false
         },
         "TargetView3": {
           "viewId": "View3",
           "viewType": "XML",
-          "name": "View3",   
-          "clearControlAggregation": false 
-          
+          "name": "View3",
+          "clearControlAggregation": false
         },
-        "TargetProduct":{
+        "TargetProduct": {
           "viewId": "Products",
           "viewType": "XML",
-          "name": "Products",   
-          "clearControlAggregation": false 
-          
+          "name": "Products",
+          "clearControlAggregation": false
+        },
+        "TargetEmployeeDetail": {
+          "viewId": "EmployeeDetail",
+          "viewType": "XML",
+          "name": "EmployeeDetail",
+          "clearControlAggregation": false
+        },
+        "TargetOrders": {
+          "viewId": "Orders",
+          "viewType": "XML",
+          "name": "Orders",
+          "clearControlAggregation": false
+        },
+        "TargetCustomers": {
+          "viewId": "Customers",
+          "viewType": "XML",
+          "name": "Customers",
+          "clearControlAggregation": false
         }
       }
-    
     },
     "rootView": {
       "viewName": "fiori2904.view.App",

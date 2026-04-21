@@ -1,1 +1,144 @@
-/* Enter your custom styles here */
+/* ============================================
+   Northwind ERP Dashboard — Custom Styles
+   ============================================ */
+
+/* === KPI Tile Styling === */
+.kpiTileContainer {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 1rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+}
+
+.kpiTileContainer > .sapUiHLayoutChildWrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 1rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.kpiTile {
+    flex: 1;
+    min-width: 180px;
+    max-width: 250px;
+    border-radius: 12px;
+    padding: 1.25rem;
+    color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.kpiTile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.kpiTileEmployees {
+    background: linear-gradient(135deg, #0a6ed1 0%, #0854a0 100%);
+}
+
+.kpiTileProducts {
+    background: linear-gradient(135deg, #107e3e 0%, #0a6629 100%);
+}
+
+.kpiTileOrders {
+    background: linear-gradient(135deg, #e78c07 0%, #c67205 100%);
+}
+
+.kpiTileCustomers {
+    background: linear-gradient(135deg, #bb0000 0%, #9b0000 100%);
+}
+
+.kpiTileIcon {
+    font-size: 2rem !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    margin-bottom: 0.5rem;
+}
+
+.kpiTileValue {
+    font-size: 2.25rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    line-height: 1.1;
+}
+
+.kpiTileLabel {
+    font-size: 0.85rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* === Table Enhancements === */
+.sapMListTbl .sapMListTblRow:hover .sapMListTblCell {
+    background-color: rgba(10, 110, 209, 0.06) !important;
+    transition: background-color 0.15s ease;
+}
+
+.sapMListTbl .sapMListTblHeaderCell {
+    font-weight: 600 !important;
+}
+
+/* === Employee Photo in Table === */
+.empPhotoSmall {
+    border-radius: 50%;
+    border: 2px solid #e8e8e8;
+    object-fit: cover;
+}
+
+/* === ObjectHeader Enhancement === */
+.empDetailHeader {
+    background: linear-gradient(135deg, #f7f7f7 0%, #eef2f5 100%);
+    border-bottom: 1px solid #d9d9d9;
+    padding: 1rem;
+}
+
+/* === Form Panels === */
+.sapMPanel {
+    margin-bottom: 0.75rem;
+}
+
+/* === Search Field === */
+.sapMSF {
+    max-width: 400px;
+}
+
+/* === Smooth Page Transitions === */
+.sapMNavItem {
+    transition: opacity 0.3s ease;
+}
+
+/* === Card-like panels === */
+.cardPanel {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin: 0.5rem;
+    background: #ffffff;
+}
+
+/* === Employee Detail Photo === */
+.empDetailPhoto {
+    border-radius: 50%;
+    border: 3px solid #0a6ed1;
+    box-shadow: 0 4px 12px rgba(10, 110, 209, 0.2);
+}
+
+/* === Quick Nav Toolbar === */
+.quickNavToolbar {
+    padding: 0.25rem 1rem;
+    background: #f7f7f7;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+/* === Responsive adjustments === */
+@media (max-width: 600px) {
+    .kpiTile {
+        min-width: 140px;
+    }
+    .kpiTileValue {
+        font-size: 1.75rem !important;
+    }
+}
