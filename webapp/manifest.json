@@ -205,5 +205,9 @@
       "id": "App",
       "async": true
     }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "fiori2904"
   }
 }
